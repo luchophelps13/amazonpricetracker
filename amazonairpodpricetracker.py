@@ -11,8 +11,8 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 #To censor password
 from getpass import getpass
-
-driver = webdriver.Chrome(r"C:\Users\luchc\Downloads\Web Drivers\chromedriver.exe")
+#Download from README
+driver = webdriver.Chrome(your_path_here)
 
 URL = "https://www.amazon.com/Apple-AirPods-Charging-Latest-Model/dp/B07PXGQC1Q/ref=sr_1_1_sspa?dchild=1&keywords=airpods&qid=1599024311&sr=8-1-spons&psc=1&spLa=ZW5jcnlwdGVkUXVhbGlmaWVyPUEzUjNJTlJHODdaTUtaJmVuY3J5cHRlZElkPUEwMzI0NzIzMktMRkxZSUE5U1JINSZlbmNyeXB0ZWRBZElkPUExMDA0ODcwREJCVUpMV1FWMk9MJndpZGdldE5hbWU9c3BfYXRmJmFjdGlvbj1jbGlja1JlZGlyZWN0JmRvTm90TG9nQ2xpY2s9dHJ1ZQ=="
 
