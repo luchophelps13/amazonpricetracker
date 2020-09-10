@@ -3,6 +3,6 @@ I have built a web scraper with Selenium that will track the price of airpods (a
 
 To download the Chrome Selenium webdriver, click this link [here](https://chromedriver.chromium.org/). 
 
-To learn more about Selenium, see the documentation in Python [here](https://selenium-python.readthedocs.io/)
+To learn more about Selenium, see the documentation in Python [here](https://selenium-python.readthedocs.io/).
 
 ![Airpods](airpods.jpg)
