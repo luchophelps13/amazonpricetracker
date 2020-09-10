@@ -5,4 +5,4 @@ To download the Chrome Selenium webdriver, click this link [here](https://chrome
 
 To learn more about Selenium, see the documentation in Python [here](https://selenium-python.readthedocs.io/)
 
-![Airpods](https://en.wikipedia.org/wiki/File:AirPods.jpg)
+![Airpods](airpods.jpg)
