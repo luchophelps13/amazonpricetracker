@@ -33,14 +33,14 @@ carrier_list = ["txt.att.net", "messaging.sprintpcs.com", "tmomail.net", "vtext.
 "sms.mycricket.com", "mymetropcs.com", "mmst5.tracfone.com", "email.uscc.net", "vmobl.com"]  
     
 phone_number = input("Enter your phone number: ") + "@"
-    
-email = input('Enter your gmail: ')
-password = getpass("Enter your password: ")
-    
+
 for i in range(len(carrier_list)):
     if i == input_phone_carrier:
         new_gateway = phone_number + carrier_list[i]
         i += 1
+
+email = input('Enter your gmail: ')
+password = getpass("Enter your password: ")   
 
 def if_user_wants_to_send_text():
     decide_to_send_text = input("Would you like to have a text sent alerting you of discounts? ")
