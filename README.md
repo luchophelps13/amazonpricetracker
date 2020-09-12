@@ -12,7 +12,7 @@ pip install email-to
 
 2. Grab the URL of the web page
 
-3. Set HEADERS = User Agent dictionary
+3. Set HEADERS = User Agent dictionary.
 This is used to disguise youself as a human, not as a python script
 
 4. Make sure you have a status code of 200 (not 503) and set up soup object to parse html
