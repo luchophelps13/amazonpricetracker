@@ -1,46 +1,39 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[123]:
-
-# Getting webpage
-from selenium import webdriver
-# Used for sending text messages
+import requests
+from bs4 import BeautifulSoup
+#Sending SMS
 import smtplib 
+#Formatting SMS
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
-#To censor password
-from getpass import getpass
-#Download from README
-driver = webdriver.Chrome(your_path_here)
+import re
 
-URL = "https://www.amazon.com/Apple-AirPods-Charging-Latest-Model/dp/B07PXGQC1Q/ref=sr_1_1_sspa?dchild=1&keywords=airpods&qid=1599024311&sr=8-1-spons&psc=1&spLa=ZW5jcnlwdGVkUXVhbGlmaWVyPUEzUjNJTlJHODdaTUtaJmVuY3J5cHRlZElkPUEwMzI0NzIzMktMRkxZSUE5U1JINSZlbmNyeXB0ZWRBZElkPUExMDA0ODcwREJCVUpMV1FWMk9MJndpZGdldE5hbWU9c3BfYXRmJmFjdGlvbj1jbGlja1JlZGlyZWN0JmRvTm90TG9nQ2xpY2s9dHJ1ZQ=="
+URL = "https://www.amazon.com/Apple-AirPods-Charging-Latest-Model/dp/B07PXGQC1Q"
+HEADERS = {"User-Agent" : "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.102 Safari/537.36"}
 
-driver.get(URL)
+page = requests.get(URL, headers = HEADERS)
+soup = BeautifulSoup(page.content, "html.parser")
 
-title = driver.find_element_by_id('productTitle').text
+print("\nStatus code: ", page.status_code, "\n")
+#print(soup.prettify())
 
-discounted_price = driver.find_element_by_id("priceblock_ourprice").text                                                  
+product_title = soup.find(id = "productTitle").text.strip(" ")
+discounted_price = soup.find(id = "priceblock_ourprice").text                                                  
+original_price = soup.find(class_ = "priceBlockStrikePriceString a-text-strike").text
+discount = soup.find(class_ = "a-span12 a-color-price a-size-base priceBlockSavingsString").text.strip("(18%)")
 
-original_price = driver.find_element_by_xpath(("/html/body/div[4]/div[3]/div[2]/div[10]/div[13]/div/table/tbody/tr[1]/td[2]/span[1]")).text
+phone_number = input("Enter your phone number: ") + "@"
+gmail = input('Enter your gmail: ')
+password = input("Enter your password: ")            
 
-discount = driver.find_element_by_xpath(("/html/body/div[4]/div[3]/div[2]/div[10]/div[13]/div/table/tbody/tr[3]/td[2]")).text.strip("(18%)")
-
-#Get phone carrier
-input_phone_carrier = int(input("Choose the number corresponding with your phone's mobile carrier: \n 0-AT&T, 1-Sprint, 2-T-Mobile, 3-Verizon, 4-Boost, 5-Cricket, 6-Metro PCS, 7-Track Phone, 8-US Cellular, 9-Virgin Mobile\n")) 
+input_phone_carrier = int(input("Input the number corresponding with your mobile phone carrier: \n0-AT&T, 1-Sprint, 2-T-Mobile, 3-Verizon, 4-Boost, 5-Cricket, 6-Metro PCS, 7-Track Phone, 8-US Cellular, 9-Virgin Mobile\n"))
 
 carrier_list = ["txt.att.net", "messaging.sprintpcs.com", "tmomail.net", "vtext.com", "myboostmobile.com", 
-"sms.mycricket.com", "mymetropcs.com", "mmst5.tracfone.com", "email.uscc.net", "vmobl.com"]  
-    
-phone_number = input("Enter your phone number: ") + "@"
+    "sms.mycricket.com", "mymetropcs.com", "mmst5.tracfone.com", "email.uscc.net", "vmobl.com"] 
 
 for i in range(len(carrier_list)):
     if i == input_phone_carrier:
         new_gateway = phone_number + carrier_list[i]
         i += 1
-
-email = input('Enter your gmail: ')
-password = getpass("Enter your password: ")   
 
 def if_user_wants_to_send_text():
     decide_to_send_text = input("Would you like to have a text sent alerting you of discounts? ")
@@ -52,9 +45,10 @@ def if_user_wants_to_send_text():
     else:
         print(decide_to_send_text, "is an invalid input. Please enter Yes or No")
     
-    return decide_to_send_text        
-        
+    return decide_to_send_text
+
 def send_text():    
+            
     ### Sending sms
     sms_gateway = new_gateway
     # The server we use to send emails in our case it will be gmail but every email provider has a different smtp 
@@ -66,29 +60,26 @@ def send_text():
     # Starting the server
     server.starttls()
     # Now we need to login
-    server.login(email,password)
+    server.login(gmail,password)
 
     # Now we use the MIME module to structure our message.
     msg = MIMEMultipart()
-    msg['From'] = email
+    msg['From'] = gmail
     msg['To'] = sms_gateway
     # Make sure you add a new line in the subject
-    msg['Subject'] = "Alert!\n\n"
+    msg['Subject'] = "Alert!"
     # Make sure you also add new lines to your body
-    body = "There is a discount available on {}! The price has dropped from {} to {}.".format(title, original_price, discounted_price)
+    body = f"There is a discount on {product_title}! The price has dropped from {original_price} to {discounted_price}!"
     # and then attach that body furthermore you can also send html content.
     msg.attach(MIMEText(body, 'plain'))
 
     sms = msg.as_string()
 
-    server.sendmail(email,sms_gateway,sms)
+    server.sendmail(gmail,sms_gateway,sms)
 
     # lastly quit the server
     server.quit()
 
 if_user_wants_to_send_text()
               
-print("There is a discount on {}! The price has dropped from {} to {}!".format(title, original_price, discounted_price))
-              
-driver.close()
-driver.quit()
+print(f"There is a discount on: {product_title}! The price has dropped from {original_price} to {discounted_price}!")
