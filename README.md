@@ -4,11 +4,13 @@ I have built a web scraper with Beautiful Soup and Requests that will track the 
 **Steps**:
 (Assuming you have python installed and a proper text editor or IDE)
 
-1. Make sure you have the dependencies
-pip install bs4 (Requests is built in)
-pip install smtplib
-pip install email-to
+1. Make sure you have the dependencies:
 
+pip install bs4 (Requests is built in)
+
+pip install smtplib
+
+pip install email-to
 
 2. Grab the URL of the web page
 
