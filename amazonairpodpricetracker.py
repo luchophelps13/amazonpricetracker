@@ -1,4 +1,6 @@
+# Used to send HTTP request
 import requests
+# Scrape HTML 
 from bs4 import BeautifulSoup
 #Sending SMS
 import smtplib 
