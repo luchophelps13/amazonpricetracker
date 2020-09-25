@@ -6,6 +6,8 @@ I have built a web scraper with Beautiful Soup and Requests that will track the 
 
 1. Make sure you have the dependencies:
 
+pip install -r requirements.txt 
+
 2. Grab the URL of the web page
 
 3. Set HEADERS = User Agent dictionary.
