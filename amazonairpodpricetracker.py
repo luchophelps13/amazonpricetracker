@@ -7,8 +7,8 @@ import smtplib
 #Formatting SMS
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
-import re
 
+#Change url if using different product/edition
 URL = "https://www.amazon.com/Apple-AirPods-Charging-Latest-Model/dp/B07PXGQC1Q"
 HEADERS = {"User-Agent" : "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.102 Safari/537.36"}
 
@@ -16,7 +16,6 @@ page = requests.get(URL, headers = HEADERS)
 soup = BeautifulSoup(page.content, "html.parser")
 
 print("\nStatus code: ", page.status_code, "\n")
-#print(soup.prettify())
 
 product_title = soup.find(id = "productTitle").text.strip(" ")
 discounted_price = soup.find(id = "priceblock_ourprice").text                                                  
