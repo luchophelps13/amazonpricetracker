@@ -116,4 +116,4 @@ URL = "enter_url_here"
 my_scraper = WebScraper(URL)
 
 my_scraper.scrape_data()
-my_scraper.if_user_wants_to_send_text()
+my_scraper.choose_to_send_text()
