@@ -21,7 +21,7 @@ class WebScraper:
         
         soup = BeautifulSoup(page.content, "html.parser")
 
-        print("\nStatus code: ", page.status_code, "\n")
+        print(f"\nStatus code: {page.status_code} \n")
         
         global product_title
         product_title = soup.find(id = "productTitle").get_text(strip=True)
