@@ -19,7 +19,6 @@ class WebScraper:
 
         page = requests.get(URL, headers = HEADERS)
         
-        global soup 
         soup = BeautifulSoup(page.content, "html.parser")
 
         print("\nStatus code: ", page.status_code, "\n")
