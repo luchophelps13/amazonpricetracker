@@ -44,7 +44,7 @@ class WebScraper:
             original_price = None
             print(f"'{product_title}' has no discount")
 
-    def if_user_wants_to_send_text(self):
+    def choose_to_send_text(self):
         
         decide_to_send_text = input("Would you like to have a text sent alerting you of discounts? ")
         
