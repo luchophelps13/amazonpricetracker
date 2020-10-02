@@ -30,6 +30,7 @@ class WebScraper:
         global listed_price
         listed_price = soup.find(id = "priceblock_ourprice")
         
+        ## Check if there is a discount on the webpage, and if there isn't, set the values equal to None
         try:
             global discount
             discount = soup.find(class_ = "a-span12 a-color-price a-size-base priceBlockSavingsString").get_text(strip=True)
@@ -112,7 +113,7 @@ class WebScraper:
         # lastly quit the server
         server.quit()
 
-URL = "https://www.amazon.com/dp/B08BHVX28T/ref=sspa_dk_detail_4?psc=1&pd_rd_i=B08BHVX28T&pd_rd_w=hgGN9&pf_rd_p=7d37a48b-2b1a-4373-8c1a-bdcc5da66be9&pd_rd_wg=KlbS8&pf_rd_r=BDZ7FK7A276563BBQRMT&pd_rd_r=e8a16f18-007d-4413-9ceb-693240910586&spLa=ZW5jcnlwdGVkUXVhbGlmaWVyPUExV0YwOFo2RUVWWkY1JmVuY3J5cHRlZElkPUEwOTc3NzA0MTVPNUpUV1dZOEs1VSZlbmNyeXB0ZWRBZElkPUEwMzYxNzMwQkw3SzBXSUZHQkc5JndpZGdldE5hbWU9c3BfZGV0YWlsJmFjdGlvbj1jbGlja1JlZGlyZWN0JmRvTm90TG9nQ2xpY2s9dHJ1ZQ=="
+URL = "enter_url_here"
 my_scraper = WebScraper(URL)
 
 my_scraper.scrape_data()
