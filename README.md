@@ -1,9 +1,9 @@
 # amazonpricetracker
 I have built a web scraper with Beautiful Soup and Requests that will check the current price of an item and check for discounts.  Furthermore, it will send a text to your phone number alerting you of that discount.
 
-To run my code, simply enter your URL in the URL variable and create an instance of class WebScraper with the URL passed in the initialization.
+**To run my code, simply enter your URL in the URL variable and create an instance of class WebScraper with the URL passed in the initialization.**
 
-**Steps**:
+**Steps to make this yourself:**
 (Assuming you have python installed and a proper text editor or IDE)
 
 1. Make sure you have the dependencies:
