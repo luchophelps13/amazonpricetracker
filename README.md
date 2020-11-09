@@ -8,7 +8,7 @@ To run my code, simply enter your URL in the URL variable and create an instance
 
 1. Make sure you have the dependencies:
 
-pip install -r requirements.txt. While many libraries are being used, bs4 (Beautiful Soup is the only one that needs to be installed).
+pip install -r requirements.txt. While many libraries are being used, bs4 (Beautiful Soup) is the only one that needs to be installed.
 
 2. Grab the URL of the web page
 
