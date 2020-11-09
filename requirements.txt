@@ -1,5 +1,1 @@
-requests
 bs4
-smtplib 
-email.mime.text
-email.mime.multipart
