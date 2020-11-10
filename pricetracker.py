@@ -7,6 +7,8 @@ import smtplib
 #Formatting SMS
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+#Censoring Password
+from getpass import getpass
 
 class WebScraper:
     
@@ -73,7 +75,7 @@ class WebScraper:
 
         gmail = input('Enter your gmail: ')
 
-        password = input("Enter your password: ")        
+        password = getpass("Enter your password: ")        
        
         ### Sending sms
         sms_gateway = new_gateway
